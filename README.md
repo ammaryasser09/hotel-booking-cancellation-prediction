@@ -9,7 +9,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit)
 ![Plotly](https://img.shields.io/badge/Plotly-Visualization-3F4F75?logo=plotly)
 
-> **Hotel Booking AI** is an end-to-end Machine Learning and Data Analytics platform designed to analyze hotel booking behavior, identify cancellation patterns, explore pricing and customer segments, and provide business-oriented insights through an interactive Streamlit dashboard.
+> **Hotel Booking AI** is an end-to-end Machine Learning and Data Analytics platform built to analyze hotel booking behavior, identify cancellation patterns, explore customer and market segments, analyze pricing and lead-time behavior, and provide business-oriented insights through an interactive Streamlit application.
 
 ---
 
@@ -23,9 +23,10 @@
 * [Exploratory Data Analysis](#-exploratory-data-analysis)
 * [Data Preprocessing](#-data-preprocessing)
 * [Feature Engineering](#-feature-engineering)
+* [Class Imbalance](#-class-imbalance)
 * [Machine Learning](#-machine-learning)
 * [Model Evaluation](#-model-evaluation)
-* [Dashboard](#-dashboard)
+* [Streamlit Application](#-streamlit-application)
 * [Project Structure](#-project-structure)
 * [Installation](#-installation)
 * [How to Run](#-how-to-run)
@@ -33,90 +34,122 @@
 * [Business Insights](#-business-insights)
 * [Future Improvements](#-future-improvements)
 * [Author](#-author)
+* [Supervisor](#-supervisor)
 
 ---
 
-## 🔎 Overview
+# 🔎 Overview
 
-The hotel industry deals with a large number of reservations every day. One of the major challenges is **booking cancellation**, which can negatively affect occupancy, revenue forecasting, and operational planning.
+The hotel industry processes a large number of reservations every day. One of the major challenges is **booking cancellation**, which can negatively affect occupancy, revenue forecasting, demand planning, and hotel operations.
 
-This project uses historical hotel booking data to:
+**Hotel Booking AI** transforms historical hotel reservation data into meaningful analytical insights and Machine Learning predictions.
 
-* Analyze customer booking behavior.
-* Identify the main factors associated with cancellations.
-* Understand pricing and ADR patterns.
-* Analyze booking lead time.
-* Explore market and distribution segments.
-* Detect potential outliers.
-* Study relationships between numerical features.
-* Train Machine Learning models to predict booking cancellations.
-* Present analytical results through an interactive dashboard.
+The platform focuses on:
 
-The final application combines **Data Analysis, Data Visualization, Machine Learning, and Business Intelligence** in one platform.
+* Understanding hotel booking behavior.
+* Identifying cancellation patterns.
+* Analyzing booking lead time.
+* Studying ADR and pricing behavior.
+* Exploring market segments.
+* Analyzing distribution channels.
+* Understanding customer loyalty.
+* Detecting outliers.
+* Studying numerical feature correlations.
+* Training Machine Learning classification models.
+* Predicting booking cancellation risk.
+* Presenting results through an interactive Streamlit dashboard.
+
+The project combines:
+
+**Data Analysis + Data Visualization + Machine Learning + Business Intelligence**
+
+into one unified platform.
 
 ---
 
-## 💼 Business Problem
+# 💼 Business Problem
 
-Hotel cancellations can lead to:
+Hotel cancellations can create several business challenges:
 
 * Empty rooms.
 * Revenue loss.
-* Poor occupancy forecasting.
+* Uncertain occupancy.
+* Poor demand forecasting.
 * Inefficient resource planning.
-* Difficulty predicting future demand.
+* Difficulty identifying high-risk reservations.
+* Challenges in pricing and inventory management.
 
-The goal of this project is to transform historical booking data into actionable insights and build a predictive model that can help hotels better understand and manage cancellation risk.
+The goal of this project is to analyze historical booking data and build a predictive system that helps identify cancellation risk and provides useful business insights.
 
 ---
 
-## 🎯 Project Objectives
+# 🎯 Project Objectives
 
-The project focuses on the following objectives:
+The main objectives of the project are:
 
 1. Understand the structure and quality of hotel booking data.
 2. Clean and preprocess the dataset.
 3. Analyze numerical and categorical variables.
-4. Identify important cancellation patterns.
-5. Analyze customer and market segments.
-6. Study ADR and pricing behavior.
-7. Engineer useful features for Machine Learning.
-8. Handle class imbalance.
-9. Train and compare multiple Machine Learning algorithms.
-10. Select a strong predictive model.
-11. Build an interactive analytics dashboard.
-12. Generate automated business insights.
+4. Explore booking distributions.
+5. Identify cancellation patterns.
+6. Analyze customer and market segments.
+7. Study ADR and pricing behavior.
+8. Analyze booking lead time.
+9. Detect and investigate outliers.
+10. Engineer useful Machine Learning features.
+11. Handle class imbalance.
+12. Train multiple Machine Learning algorithms.
+13. Evaluate model performance using multiple metrics.
+14. Select an effective predictive approach.
+15. Build an interactive Streamlit dashboard.
+16. Generate automated business-oriented insights.
 
 ---
 
-## 📊 Dataset
+# 📊 Dataset
 
-The project uses the **Hotel Booking Demand Dataset**, containing approximately:
+The project uses the **Hotel Booking Demand Dataset**.
+
+The dataset contains approximately:
 
 **119,390 booking records**
 
-The dataset includes information related to:
+and includes information about hotel reservations, customers, pricing, distribution channels, market segments, and cancellation behavior.
 
-* Hotel type
-* Reservation status
-* Lead time
-* Arrival date
-* Number of guests
-* Market segment
-* Distribution channel
-* Customer type
-* Deposit type
-* Room type
-* Previous cancellations
-* Booking changes
-* ADR
-* Country
-* Agent
-* Company
+### Main Features
 
-### Target Variable
+Important columns include:
 
-The main prediction target is:
+* `hotel`
+* `is_canceled`
+* `lead_time`
+* `arrival_date_year`
+* `arrival_date_month`
+* `stays_in_weekend_nights`
+* `stays_in_week_nights`
+* `adults`
+* `children`
+* `babies`
+* `meal`
+* `country`
+* `market_segment`
+* `distribution_channel`
+* `is_repeated_guest`
+* `previous_cancellations`
+* `reserved_room_type`
+* `booking_changes`
+* `deposit_type`
+* `agent`
+* `company`
+* `days_in_waiting_list`
+* `customer_type`
+* `adr`
+
+---
+
+## 🎯 Target Variable
+
+The main Machine Learning target is:
 
 ```text
 is_canceled
@@ -129,29 +162,34 @@ Where:
 1 → Booking was canceled
 ```
 
+The cancellation rate in the original hotel booking dataset is approximately **37%**.
+
 ---
 
-## ✨ Key Features
+# ✨ Key Features
 
-### 📈 Exploratory Data Analysis
+## 📈 Exploratory Data Analysis
 
-The platform provides analysis of:
+The application provides analysis of:
 
-* Booking distributions
-* Cancellation behavior
-* Lead-time patterns
-* ADR distribution
-* Market segments
-* Customer types
-* Hotel types
-* Distribution channels
-* Guest behavior
-* Outliers
-* Feature correlations
+* Booking distributions.
+* Cancellation behavior.
+* Lead-time patterns.
+* ADR distribution.
+* Market segments.
+* Customer types.
+* Hotel types.
+* Distribution channels.
+* Guest behavior.
+* Outliers.
+* Feature correlations.
+* Customer loyalty.
 
-### 🧠 Machine Learning
+---
 
-Several Machine Learning algorithms were evaluated:
+## 🤖 Machine Learning
+
+Multiple Machine Learning algorithms were evaluated during model development:
 
 * Logistic Regression
 * Decision Tree
@@ -161,27 +199,34 @@ Several Machine Learning algorithms were evaluated:
 * Gaussian Naive Bayes
 * XGBoost
 
-### 📊 Interactive Dashboard
+The final application uses an **XGBoost pipeline** for the prediction component.
 
-The Streamlit dashboard provides:
+---
 
-* KPI cards
-* Interactive filters
-* Data visualizations
-* Booking analysis
-* Cancellation analysis
-* Pricing analysis
-* Guest loyalty analysis
-* Correlation analysis
-* Automated business insights
+## 📊 Interactive Dashboard
+
+The Streamlit application provides:
+
+* KPI cards.
+* Interactive navigation.
+* Booking analysis.
+* Cancellation analysis.
+* Lead-time analysis.
+* ADR and pricing analysis.
+* Distribution analysis.
+* Outlier analysis.
+* Correlation analysis.
+* Guest loyalty analysis.
+* Automated business insights.
+* Machine Learning prediction.
 
 ---
 
 # 🔬 Exploratory Data Analysis
 
-The EDA stage was used to understand the dataset before applying Machine Learning.
+The EDA stage was performed to understand the dataset before Machine Learning.
 
-### Numerical Analysis
+## Numerical Analysis
 
 Important numerical variables include:
 
@@ -195,15 +240,17 @@ Important numerical variables include:
 * `days_in_waiting_list`
 * `adr`
 
-Visualizations include:
+Visualization techniques include:
 
-* Histograms
-* Box plots
-* Distribution plots
-* Bar charts
-* Correlation heatmaps
+* Histograms.
+* Box plots.
+* Bar charts.
+* Distribution analysis.
+* Correlation heatmaps.
 
-### Categorical Analysis
+---
+
+## Categorical Analysis
 
 Important categorical variables include:
 
@@ -216,51 +263,63 @@ Important categorical variables include:
 * `deposit_type`
 * `customer_type`
 
+These features were analyzed to understand differences between booking groups and cancellation behavior.
+
 ---
 
 # 🧹 Data Preprocessing
 
-The preprocessing pipeline includes:
+The Machine Learning preprocessing pipeline includes several stages.
 
-### Missing Values
+## Missing Values
 
-Missing values were analyzed and handled according to the nature of each feature.
+Missing values were analyzed according to feature type.
 
-For numerical features:
+### Numerical Features
+
+Median imputation was used:
 
 ```python
 SimpleImputer(strategy="median")
 ```
 
-For categorical features:
+### Categorical Features
+
+Most-frequent imputation was used:
 
 ```python
 SimpleImputer(strategy="most_frequent")
 ```
 
-### Encoding
+---
 
-Categorical features were transformed using:
+## 🔤 Categorical Encoding
+
+Categorical variables were transformed using:
 
 ```python
 OneHotEncoder(handle_unknown="ignore")
 ```
 
-### Feature Transformation
+This allows categorical features to be converted into numerical representations suitable for Machine Learning models.
 
-A `ColumnTransformer` was used to apply different preprocessing operations to numerical and categorical features.
+---
+
+## 🔧 ColumnTransformer
+
+A `ColumnTransformer` was used to apply different preprocessing operations to numerical and categorical features within the Machine Learning pipeline.
+
+This makes the preprocessing process consistent between training and prediction.
 
 ---
 
 # ⚙️ Feature Engineering
 
-Several features were created to improve the analysis and Machine Learning process.
+Feature engineering was used to create more meaningful representations of the booking data.
 
-Examples include:
+## ⏱️ Lead Time Groups
 
-### Lead Time Groups
-
-Bookings were grouped into:
+Bookings were grouped according to their lead time:
 
 ```text
 0–30 days
@@ -270,79 +329,92 @@ Bookings were grouped into:
 180+ days
 ```
 
-This helped analyze how cancellation behavior changes depending on how early the booking was made.
+This allows cancellation behavior to be analyzed according to how far in advance a reservation was made.
 
-### Date-Based Features
+---
 
-Additional temporal features can be extracted from arrival dates, such as:
+## 📅 Date Features
 
-* Arrival year
-* Arrival month
-* Arrival period
+Arrival information can also be analyzed using temporal features such as:
+
+* Arrival year.
+* Arrival month.
+* Arrival period.
+
+These features help identify seasonal and yearly booking patterns.
 
 ---
 
 # ⚖️ Class Imbalance
 
-The target variable is not perfectly balanced.
+The target variable is imbalanced because the number of non-canceled bookings is larger than the number of canceled bookings.
 
-Approximate distribution:
+The dataset contains approximately:
 
 ```text
-Not Cancelled → 72.51%
-Cancelled     → 27.49%
+Not Canceled → 63%
+Canceled     → 37%
 ```
 
-To address this issue, techniques such as:
+Class imbalance was considered during Machine Learning development.
+
+Techniques such as:
 
 ```python
 class_weight="balanced"
 ```
 
-and **SMOTE** were considered/used during model development.
+and **SMOTE** were used/considered during model experimentation.
 
-This helps prevent the model from becoming overly biased toward the majority class.
+This helps reduce the tendency of classification models to favor the majority class.
 
 ---
 
 # 🤖 Machine Learning
 
-The following models were evaluated:
+Several classification algorithms were evaluated.
 
-| Model                | Purpose                       |
-| -------------------- | ----------------------------- |
-| Logistic Regression  | Linear baseline               |
-| Decision Tree        | Rule-based classification     |
-| Random Forest        | Ensemble learning             |
-| SVC                  | Margin-based classification   |
-| KNN                  | Distance-based classification |
-| Gaussian Naive Bayes | Probabilistic baseline        |
-| XGBoost              | Advanced gradient boosting    |
+| Model                | Description                      |
+| -------------------- | -------------------------------- |
+| Logistic Regression  | Linear classification baseline   |
+| Decision Tree        | Rule-based classification        |
+| Random Forest        | Ensemble learning                |
+| SVC                  | Margin-based classification      |
+| KNN                  | Distance-based classification    |
+| Gaussian Naive Bayes | Probabilistic classification     |
+| XGBoost              | Gradient boosting classification |
 
 ---
 
 # 🚀 XGBoost
 
-XGBoost was selected as the main advanced Machine Learning approach because it is highly effective for structured/tabular datasets.
+**XGBoost** was selected as the main advanced Machine Learning approach because it performs well on structured and tabular datasets.
 
-The final pipeline includes preprocessing and the trained XGBoost model.
+The project contains a saved XGBoost Machine Learning pipeline:
 
-Example:
+```text
+hotel_booking_xgboost_pipeline.pkl
+```
+
+The saved pipeline contains the preprocessing and trained prediction workflow required for inference.
+
+The model can be loaded using:
 
 ```python
-joblib.dump(
-    final_model,
+import joblib
+
+model = joblib.load(
     "hotel_booking_xgboost_pipeline.pkl"
 )
 ```
 
-The saved pipeline can later be loaded for prediction without manually repeating the preprocessing steps.
+This allows new booking information to pass through the same preprocessing and prediction pipeline used during model development.
 
 ---
 
 # 📏 Model Evaluation
 
-The models were evaluated using several metrics:
+The Machine Learning models were evaluated using several metrics:
 
 * Accuracy
 * Precision
@@ -350,175 +422,195 @@ The models were evaluated using several metrics:
 * F1 Score
 * ROC-AUC
 
-### Example Results
+### Development Results
 
 | Model               |       Train Accuracy |        Test Accuracy |
 | ------------------- | -------------------: | -------------------: |
 | Logistic Regression |               77.35% |               77.09% |
 | Decision Tree       |               78.81% |               77.44% |
-| XGBoost             | Final selected model | Final selected model |
+| XGBoost             | Final Selected Model | Final Selected Model |
 
-> The final model selection should consider more than accuracy alone, especially because cancellation prediction is a classification problem with class imbalance.
-
----
-
-# 📊 Streamlit Dashboard
-
-The project includes an interactive web dashboard built with **Streamlit**.
-
-The dashboard is designed to transform technical Machine Learning results into understandable business insights.
-
-### Dashboard Sections
-
-#### 🏠 Overview
-
-Provides a high-level summary of:
-
-* Total bookings
-* Cancellation rate
-* Average ADR
-* Average lead time
-
-#### 📊 Booking Behavior
-
-Analyzes:
-
-* Booking patterns
-* Hotel distribution
-* Market segments
-* Customer types
-
-#### ❌ Cancellation Drivers
-
-Explores factors associated with cancellation behavior.
-
-#### ⏱️ Lead Time Analysis
-
-Analyzes how cancellation rates change as the booking lead time increases.
-
-#### 💰 ADR & Pricing
-
-Analyzes:
-
-* Average Daily Rate
-* Pricing distributions
-* Pricing outliers
-* Segment-level ADR
-
-#### 📦 Distribution & Outlier Analysis
-
-Examines booking channels and unusual observations.
-
-#### 🔗 Feature Correlation
-
-Provides correlation analysis between numerical variables.
-
-#### 👤 Guest Loyalty
-
-Analyzes repeated guests and customer behavior.
-
-#### 🧠 Automated Business Insights
-
-Generates business-oriented conclusions from the analyzed data.
+> Model selection should not rely on accuracy alone. Precision, recall, F1-score, and ROC-AUC are also important when evaluating cancellation prediction because the target variable is imbalanced.
 
 ---
 
-# 💡 Business Insights
+# 📊 Streamlit Application
 
-Some important findings from the analysis include:
+The project includes an interactive web application built using **Streamlit**.
 
-### ⚠️ Cancellation Risk
+The application is organized into multiple pages.
 
-The dataset contains a significant percentage of canceled reservations, making cancellation prediction an important business problem.
+## 🏠 Home
 
-### ⏱️ Lead Time
+The Home page provides:
 
-Longer booking lead times are associated with higher cancellation rates.
+* Project introduction.
+* Project overview.
+* Dataset statistics.
+* System capabilities.
+* Machine Learning workflow.
+* XGBoost information.
+* Project architecture.
 
-Example analysis:
+---
 
-```text
-0–30 days       → 16.42%
-31–60 days      → 31.62%
-61–120 days     → 33.54%
-121–180 days    → 35.09%
-180+ days       → 39.74%
-```
+## 📊 Analysis
 
-This suggests that reservations made far in advance may require additional retention strategies.
+The Analysis page focuses on Exploratory Data Analysis and provides:
 
-### 🎯 Market Segment
+* Analysis filters.
+* Booking KPIs.
+* Booking behavior analysis.
+* Cancellation drivers.
+* Lead-time analysis.
+* ADR and pricing analysis.
+* Distribution analysis.
+* Outlier analysis.
+* Feature correlation.
+* Guest loyalty.
+* Automated business insights.
 
-Online Travel Agencies represent a major portion of the booking volume.
+---
 
-### 🏨 Hotel Distribution
+## 📈 Dashboard
 
-City Hotel represents a large share of the booking activity in the dataset.
+The Dashboard page provides an interactive overview of the main hotel booking KPIs and analytical visualizations.
+
+It is designed to make the results easier to understand from a business perspective.
+
+---
+
+## 🤖 Prediction
+
+The Prediction page uses the trained XGBoost pipeline to estimate whether a hotel reservation is likely to be canceled.
+
+The prediction workflow is based on the same preprocessing pipeline used during model development.
+
+---
+
+## ℹ️ About
+
+The About page provides information about:
+
+* The project.
+* Technologies used.
+* Machine Learning approach.
+* Project purpose.
+* Author.
+* Supervisor.
 
 ---
 
 # 🗂️ Project Structure
 
+The actual repository structure is:
+
 ```text
-Hotel-Booking-AI/
+hotel-booking-cancellation-prediction/
 │
-├── app.py
+├── .streamlit/
+│   └── config.toml
 │
 ├── pages/
-│   ├── analysis.py
-│   ├── prediction.py
-│   └── ...
+│   ├── About.py
+│   ├── Analysis.py
+│   ├── Dashboard.py
+│   └── Prediction.py
 │
-├── data/
-│   └── hotel_bookings.csv
+├── Home.py
 │
-├── models/
-│   └── hotel_booking_xgboost_pipeline.pkl
+├── navigation.py
 │
-├── notebooks/
-│   ├── EDA.ipynb
-│   └── ML_Modeling.ipynb
+├── hotel_bookings.csv
 │
-├── assets/
-│   ├── images/
-│   └── styles/
+├── hotel_booking_xgboost_pipeline.pkl
 │
-├── requirements.txt
+├── project machine learning.ipynb
 │
-└── README.md
+├── README.md
+│
+└── requirements.txt
 ```
 
-> Adjust the structure above to match the actual folders and files in your repository.
+### Main Files
+
+**`Home.py`**
+
+Main entry point of the Streamlit application.
+
+**`navigation.py`**
+
+Handles the application's navigation system.
+
+**`pages/Analysis.py`**
+
+Contains the Exploratory Data Analysis interface.
+
+**`pages/Dashboard.py`**
+
+Contains the main analytical dashboard.
+
+**`pages/Prediction.py`**
+
+Contains the Machine Learning prediction interface.
+
+**`pages/About.py`**
+
+Contains project and author information.
+
+**`hotel_bookings.csv`**
+
+The main hotel booking dataset.
+
+**`hotel_booking_xgboost_pipeline.pkl`**
+
+Saved XGBoost prediction pipeline.
+
+**`project machine learning.ipynb`**
+
+Notebook containing the data analysis and Machine Learning development workflow.
+
+**`requirements.txt`**
+
+Contains the Python dependencies required to run the project.
 
 ---
 
 # 🛠️ Installation
 
-Clone the repository:
+## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ammaryasser09/Hotel-Booking-AI.git
+git clone https://github.com/ammaryasser09/hotel-booking-cancellation-prediction.git
 ```
 
-Navigate to the project:
+## 2. Navigate to the Project
 
 ```bash
-cd Hotel-Booking-AI
+cd hotel-booking-cancellation-prediction
 ```
 
-Create a virtual environment:
+## 3. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate the environment on Windows:
+## 4. Activate the Environment
+
+### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-Install the required dependencies:
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+## 5. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -528,17 +620,25 @@ pip install -r requirements.txt
 
 # ▶️ How to Run
 
-Start the Streamlit application:
+Start the Streamlit application using:
 
 ```bash
-streamlit run app.py
+streamlit run Home.py
 ```
 
-The application will open in your browser.
+After running the command, Streamlit will provide a local URL where the application can be accessed.
+
+Usually:
+
+```text
+http://localhost:8501
+```
 
 ---
 
 # 📦 Main Dependencies
+
+The project uses technologies including:
 
 ```text
 Python
@@ -554,162 +654,227 @@ Joblib
 Streamlit
 ```
 
+The complete dependency list is available in:
+
+```text
+requirements.txt
+```
+
 ---
 
 # 🧰 Technologies
 
-### Programming
+## Programming
 
 * Python
 
-### Data Analysis
+## Data Analysis
 
 * Pandas
 * NumPy
 
-### Data Visualization
+## Data Visualization
 
 * Matplotlib
 * Seaborn
 * Plotly
 
-### Machine Learning
+## Machine Learning
 
 * Scikit-learn
 * XGBoost
 * Imbalanced-learn
 
-### Application
+## Application
 
 * Streamlit
 
-### Model Persistence
+## Model Persistence
 
 * Joblib
 
-### Version Control
+## Version Control
 
 * Git
 * GitHub
 
 ---
 
+# 💡 Business Insights
+
+The analysis produced several meaningful observations.
+
+## ⚠️ Cancellation Behavior
+
+Hotel booking cancellation represents a significant business challenge and requires careful monitoring because cancellations can affect occupancy and revenue planning.
+
+---
+
+## ⏱️ Lead Time and Cancellation
+
+Cancellation rates tend to increase as booking lead time increases.
+
+Example analysis:
+
+```text
+0–30 days       → 16.42%
+31–60 days      → 31.62%
+61–120 days     → 33.54%
+121–180 days    → 35.09%
+180+ days       → 39.74%
+```
+
+This suggests that reservations made significantly in advance may require additional monitoring and retention strategies.
+
+---
+
+## 🎯 Market Segment
+
+Online Travel Agencies represent one of the dominant market segments in the dataset.
+
+This highlights the importance of understanding third-party booking channels when analyzing cancellation behavior.
+
+---
+
+## 🏨 Hotel Type
+
+City Hotel represents a large share of the booking activity within the dataset.
+
+Comparing City Hotel and Resort Hotel behavior can provide additional insight into booking patterns and cancellation risk.
+
+---
+
 # 🔮 Future Improvements
 
-Future versions of the project may include:
+Potential future improvements include:
 
-* Real-time hotel booking prediction.
-* Advanced cancellation risk scoring.
-* Dynamic revenue forecasting.
+* Real-time cancellation risk scoring.
+* Advanced revenue forecasting.
 * Customer segmentation using clustering.
+* Customer lifetime value analysis.
 * Recommendation systems.
 * Explainable AI using SHAP.
 * Real-time database integration.
 * Authentication and user management.
 * Cloud deployment.
 * REST API using FastAPI.
-* Advanced AI-generated business recommendations.
+* AI-generated business recommendations.
 * Multilingual dashboard support.
+* Real-time hotel data integration.
 
 ---
 
 # 🎯 Project Workflow
 
 ```text
-Raw Dataset
-     │
-     ▼
-Data Cleaning
-     │
-     ▼
-Exploratory Data Analysis
-     │
-     ▼
-Feature Engineering
-     │
-     ▼
-Data Preprocessing
-     │
-     ▼
-Class Imbalance Handling
-     │
-     ▼
-Model Training
-     │
-     ▼
-Model Evaluation
-     │
-     ▼
-XGBoost Pipeline
-     │
-     ▼
-Streamlit Dashboard
-     │
-     ▼
-Business Insights
+                    Raw Dataset
+                         │
+                         ▼
+                  Data Cleaning
+                         │
+                         ▼
+             Exploratory Data Analysis
+                         │
+                         ▼
+                Feature Engineering
+                         │
+                         ▼
+              Data Preprocessing
+                         │
+                         ▼
+            Class Imbalance Handling
+                         │
+                         ▼
+                 Model Training
+                         │
+                         ▼
+                Model Evaluation
+                         │
+                         ▼
+               XGBoost Pipeline
+                         │
+                         ▼
+                Streamlit Platform
+                         │
+                         ▼
+               Business Insights
 ```
 
 ---
 
-# 📸 Screenshots
+# 📸 Application Preview
 
-Add screenshots of the application here:
+The application contains several main interfaces:
 
 ```text
-screenshots/
-├── dashboard.png
-├── analysis.png
-├── cancellation.png
-├── pricing.png
-└── prediction.png
+Home
+   │
+   ├── Analysis
+   │
+   ├── Dashboard
+   │
+   ├── Prediction
+   │
+   └── About
 ```
 
-Example:
-
-```markdown
-![Dashboard](screenshots/dashboard.png)
-```
+Screenshots can be added later under a dedicated `screenshots/` folder.
 
 ---
 
 # 👨‍💻 Author
 
-### Ammar Yasser Zaki
+## Ammar Yasser Zaki
 
 Artificial Intelligence Student
 Egyptian Russian University
 
-**GitHub:** `ammaryasser09`
+GitHub:
+
+[@ammaryasser09](https://github.com/ammaryasser09?utm_source=chatgpt.com)
 
 ---
 
 # 👨‍🏫 Supervisor
 
-### Eng. Mohab Allam
+## Eng. Mohab Allam
 
 ---
 
 # ⭐ Project Highlights
 
-* End-to-end Machine Learning project
-* Real-world hotel booking dataset
-* Comprehensive EDA
-* Feature engineering
-* Class imbalance handling
-* Multiple Machine Learning algorithms
-* XGBoost classification
-* Interactive Streamlit dashboard
-* Automated business insights
-* Production-oriented ML pipeline
+* End-to-end Machine Learning project.
+* Real-world hotel booking dataset.
+* Comprehensive Exploratory Data Analysis.
+* Numerical and categorical feature analysis.
+* Feature engineering.
+* Missing-value handling.
+* Class imbalance handling.
+* Multiple Machine Learning algorithms.
+* XGBoost classification.
+* Saved Machine Learning pipeline.
+* Interactive Streamlit application.
+* Interactive dashboard.
+* Cancellation analysis.
+* Lead-time analysis.
+* ADR and pricing analysis.
+* Guest loyalty analysis.
+* Correlation analysis.
+* Automated business insights.
+* GitHub-ready project structure.
 
 ---
 
 # 📄 License
 
-This project is developed for educational and portfolio purposes.
+This project was developed for educational, academic, and portfolio purposes.
 
 ---
 
-## ⭐ If you find this project useful
+## ⭐ Support
 
-Feel free to ⭐ the repository and explore the project.
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
+
+Repository:
+
+[Hotel Booking Cancellation Prediction](https://github.com/ammaryasser09/hotel-booking-cancellation-prediction?utm_source=chatgpt.com)
